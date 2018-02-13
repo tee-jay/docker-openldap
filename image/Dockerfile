@@ -26,8 +26,13 @@ RUN echo "path-include /usr/share/doc/krb5*" >> /etc/dpkg/dpkg.cfg.d/docker && a
        libsasl2-modules-sql \
        openssl \
        slapd \
-       krb5-kdc-ldap \
-    && apt-get clean \
+       krb5-kdc-ldap 
+
+# Install wget
+RUN apt-get install -y wget
+
+# Cleanup
+RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service

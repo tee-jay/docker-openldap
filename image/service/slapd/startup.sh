@@ -257,6 +257,9 @@ EOF
         ldap_add_or_modify "${CONTAINER_SERVICE_DIR}/slapd/assets/config/bootstrap/ldif/readonly-user/readonly-user-acl.ldif"
       fi
 
+      log-helper info "Download custom bootstrap ldif..."
+      wget -O ${CONTAINER_SERVICE_DIR}/slapd/assets/config/bootstrap/ldif/custom/ryan.ldif ${LDAP_LDIF_URL}
+
       log-helper info "Add custom bootstrap ldif..."
       for f in $(find ${CONTAINER_SERVICE_DIR}/slapd/assets/config/bootstrap/ldif/custom -type f -name \*.ldif  | sort); do
         ldap_add_or_modify "$f"
